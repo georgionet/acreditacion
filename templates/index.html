@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="text-2xl mb-4">Panel de Acreditación</h1>
+<p class="mb-4">Total acreditados: <span class="font-bold">{{ total }}</span></p>
+<table class="min-w-full bg-white shadow-md rounded mb-4">
+    <thead class="bg-gray-200">
+        <tr>
+            <th class="py-2 px-4 text-left">Nombre</th>
+            <th class="py-2 px-4 text-left">Cargo</th>
+            <th class="py-2 px-4 text-left">Empresa</th>
+            <th class="py-2 px-4 text-left">Acreditado por</th>
+            <th class="py-2 px-4 text-left">Hora</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in persons %}
+        <tr class="border-t">
+            <td class="py-2 px-4">{{ p.name }}</td>
+            <td class="py-2 px-4">{{ p.cargo }}</td>
+            <td class="py-2 px-4">{{ p.company }}</td>
+            <td class="py-2 px-4">{{ p.accredited_by }}</td>
+            <td class="py-2 px-4">{{ p.accredited_at.strftime('%Y-%m-%d %H:%M') }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{{ url_for('manual') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Agregar Manualmente</a>
+<a href="{{ url_for('logout') }}" class="ml-4 text-blue-500">Cerrar sesión</a>
+{% endblock %}
